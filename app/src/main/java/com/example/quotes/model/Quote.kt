@@ -18,5 +18,7 @@ data class Quote(
     @ColumnInfo(name = "quotedEntity")
     val quotedEntity: String,
     @ColumnInfo(name = "date")
-    val dateText: String
+    val dateText: String,
+    @ColumnInfo(name = "description")
+    val description: String
 ) : Parcelable

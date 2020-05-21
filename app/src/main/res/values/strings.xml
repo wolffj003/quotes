@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Quotes</string>
+
+    <!--  Views  -->
+    <string name="tiletQuote">Quote text</string>
+    <string name="tiletQuotedEntity">Quote by</string>
+    <string name="tiletQuoteDate">Quote date</string>
+    <string name="tiletQuoteDescription">Quote description</string>
+
+    <string name="tvQuoteTitle">Quote Title</string>
+    <string name="tvQuotedEntity">Quoted entity</string>
+    <string name="tvQuoteDate">Quote date</string>
+
+    <!--  Toasts  -->
+    <string name="tstFillForms">Please fill out all forms.</string>
+
+
 </resources>
