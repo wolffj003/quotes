@@ -13,6 +13,9 @@ interface QuoteDao {
     @Query("DELETE FROM quoteTable")
     fun deleteQuotes()
 
+    @Query("SELECT * FROM quoteTable WHERE id=:id")  // Hou krijg ik in mainactivity/viewquoteactivity de id?
+    fun getQuote(id: Long): LiveData<Quote>
+
     @Insert
     suspend fun insertQuote(quote: Quote)
 

@@ -17,6 +17,10 @@ class QuoteRepository(context: Context) {
         return quoteDao.getQuotes()
     }
 
+    fun getQuote(id: Long): LiveData<Quote> {
+        return  quoteDao.getQuote(id)
+    }
+
     fun deleteQuotes() {
         return quoteDao.deleteQuotes()
     }

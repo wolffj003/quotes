@@ -4,8 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.webkit.URLUtil
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quotes.model.Quote
@@ -13,6 +19,7 @@ import com.example.quotes.model.QuoteAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 const val ADD_QUOTE_REQUEST_CODE = 100
+const val EXTRA_VIEW_QUOTE = "EXTRA_VIEW_QUOTE"
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,13 +43,15 @@ class MainActivity : AppCompatActivity() {
         fabAddQuote.setOnClickListener { onAddQuoteClick() }
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = QuoteAdapter(quotes)
+        viewAdapter = QuoteAdapter(quotes) { quote : Quote -> quoteClicked(quote)}
 
         recyclerView = findViewById<RecyclerView>(R.id.rvQuotes).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
         }
+
+        createItemTouchHelper().attachToRecyclerView(rvQuotes)
     }
 
     private fun initViewModel() {
@@ -56,6 +65,52 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun createItemTouchHelper(): ItemTouchHelper {
+        val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val quoteToDelete = quotes[position]
+
+                mainActivityViewModel.deleteQuote(quoteToDelete)
+            }
+        }
+        return ItemTouchHelper(callback)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        deleteQuotes()
+
+        return when (item.itemId) {
+            R.id.menuDelete -> true
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun deleteQuotes() {
+        mainActivityViewModel.deleteQuotes()
+    }
+
+
+    private fun quoteClicked(quote: Quote) {  // Implement new view (don't forget menu: delete and back btn)
+        val viewQuoteIntent = Intent(this, ViewQuoteActivity::class.java)
+        viewQuoteIntent.putExtra(EXTRA_VIEW_QUOTE, quote.id) // --> Probeer eerst db aanpak met selectie obv ID
+
+        startActivity(viewQuoteIntent)
+    }
 
     private fun onAddQuoteClick() {
         val intent = Intent(this, AddQuoteActivity::class.java)
