@@ -20,5 +20,7 @@ data class Quote(
     @ColumnInfo(name = "date")
     val dateText: String,
     @ColumnInfo(name = "description")
-    val description: String
+    val description: String,
+    @ColumnInfo(name = "score")
+    var score: Int
 ) : Parcelable

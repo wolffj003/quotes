@@ -19,6 +19,9 @@ interface QuoteDao {
     @Insert
     suspend fun insertQuote(quote: Quote)
 
+    @Update
+    suspend fun updateQuote(quote: Quote)
+
     @Delete
     suspend fun deleteQuote(quote: Quote)
 }

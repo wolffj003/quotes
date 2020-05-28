@@ -10,11 +10,13 @@
     <string name="tvQuoteTitle">Quote Title</string>
     <string name="tvQuotedEntity">Quoted entity</string>
     <string name="tvQuoteDate">Quote date</string>
+    <string name="tvQuoteScore">132</string>
 
     <string name="tvViewQuoteDescription">Quote description</string>
     <string name="tvViewQuote">View quote text</string>
     <string name="tvViewQuotedEntity">View quoted entity</string>
     <string name="tvViewQuoteDate">View quote date</string>
+    <string name="tvViewQuoteScore">Quote score: %1$d</string>
 
     <!--  Menus  -->
     <string name="menuDelete">Delete all quotes</string>

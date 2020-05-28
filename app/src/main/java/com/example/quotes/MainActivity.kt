@@ -7,15 +7,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.webkit.URLUtil
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quotes.model.DOWNVOTE
 import com.example.quotes.model.Quote
 import com.example.quotes.model.QuoteAdapter
+import com.example.quotes.model.UPVOTE
 import kotlinx.android.synthetic.main.activity_main.*
 
 const val ADD_QUOTE_REQUEST_CODE = 100
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         fabAddQuote.setOnClickListener { onAddQuoteClick() }
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = QuoteAdapter(quotes) { quote : Quote -> quoteClicked(quote)}
+        viewAdapter = QuoteAdapter(quotes) { quote : Quote, voteDirection: String -> quoteClicked(quote, voteDirection)}
 
         recyclerView = findViewById<RecyclerView>(R.id.rvQuotes).apply {
             setHasFixedSize(true)
@@ -105,11 +105,23 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun quoteClicked(quote: Quote) {  // Implement new view (don't forget menu: delete and back btn)
-        val viewQuoteIntent = Intent(this, ViewQuoteActivity::class.java)
-        viewQuoteIntent.putExtra(EXTRA_VIEW_QUOTE, quote.id) // --> Probeer eerst db aanpak met selectie obv ID
+    private fun quoteClicked(quote: Quote, voteDirection: String) {
+        when (voteDirection) {
+            "" -> {
+                val viewQuoteIntent = Intent(this, ViewQuoteActivity::class.java)
+                viewQuoteIntent.putExtra(EXTRA_VIEW_QUOTE, quote.id)
 
-        startActivity(viewQuoteIntent)
+                startActivity(viewQuoteIntent)
+            }
+            UPVOTE -> {
+                quote.score++
+                mainActivityViewModel.updateQuote(quote)
+            }
+            DOWNVOTE -> {
+                quote.score--
+                mainActivityViewModel.updateQuote(quote)
+            }
+        }
     }
 
     private fun onAddQuoteClick() {

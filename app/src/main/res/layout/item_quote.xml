@@ -19,12 +19,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:text="@string/tvQuotedEntity"
             card_view:layout_constraintBottom_toTopOf="@+id/tvQuoteDate"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintEnd_toStartOf="@+id/btnUpvote"
             card_view:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -33,14 +32,13 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:text="@string/tvQuoteTitle"
             android:textSize="30sp"
             android:textStyle="italic"
             card_view:layout_constraintBottom_toTopOf="@+id/tvQuotedEntity"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintEnd_toStartOf="@+id/btnUpvote"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -49,13 +47,53 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="@string/tvQuoteDate"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.5"
+            card_view:layout_constraintEnd_toStartOf="@+id/btnUpvote"
             card_view:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnDownvote"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:background="#FFFFFF"
+            android:scaleType="fitCenter"
+            android:tint="#000000"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:srcCompat="@drawable/arrow" />
+
+        <ImageButton
+            android:id="@+id/btnUpvote"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="#FFFFFF"
+            android:rotation="180"
+            android:scaleType="fitCenter"
+            android:tint="#000000"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:srcCompat="@drawable/arrow" />
+
+        <TextView
+            android:id="@+id/tvQuoteScore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLength="4"
+            android:text="@string/tvQuoteScore"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            card_view:layout_constraintBottom_toTopOf="@+id/btnDownvote"
+            card_view:layout_constraintEnd_toEndOf="@+id/btnUpvote"
+            card_view:layout_constraintStart_toStartOf="@+id/btnUpvote"
+            card_view:layout_constraintTop_toBottomOf="@+id/btnUpvote" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

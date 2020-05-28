@@ -41,7 +41,8 @@ class AddQuoteActivity : AppCompatActivity() {
                 quote = tiletQuoteText,
                 quotedEntity = tiletQuotedEntityText,
                 dateText = tiletQuoteDateText,  // Maak er een date van (net als gamebacklog)
-                description = tiletQuoteDescriptionText
+                description = tiletQuoteDescriptionText,
+                score = 0
             )
             val resultIntent = Intent()
 

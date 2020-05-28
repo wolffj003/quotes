@@ -29,6 +29,10 @@ class QuoteRepository(context: Context) {
         quoteDao.insertQuote(quote)
     }
 
+    suspend fun updateQuote(quote: Quote) {
+        quoteDao.updateQuote(quote)
+    }
+
     suspend fun deleteQuote(quote: Quote) {
         quoteDao.deleteQuote(quote)
     }

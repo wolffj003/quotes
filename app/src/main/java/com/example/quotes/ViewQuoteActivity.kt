@@ -34,6 +34,7 @@ class ViewQuoteActivity : AppCompatActivity() {
                 this@ViewQuoteActivity.tvViewQuotedEntity.text = observedQuote.quotedEntity
                 this@ViewQuoteActivity.tvViewQuoteDate.text = observedQuote.dateText  // Refactor -> date
                 this@ViewQuoteActivity.tvViewQuoteDescription.text = observedQuote.description
+                this@ViewQuoteActivity.tvViewQuoteScore.text = getString(R.string.tvViewQuoteScore, observedQuote.score)
             })
         }
     }

@@ -24,6 +24,10 @@ class MainActivityViewModel(application: Application): AndroidViewModel(applicat
         ioScope.launch { quoteRepository.deleteQuote(quote) }
     }
 
+    fun updateQuote(quote: Quote) {
+        ioScope.launch { quoteRepository.updateQuote(quote) }
+    }
+
     fun deleteQuotes() {
         ioScope.launch { quoteRepository.deleteQuotes() }
     }
