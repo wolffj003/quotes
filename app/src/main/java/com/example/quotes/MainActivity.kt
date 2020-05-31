@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.Observer
@@ -30,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
     private var quotes = arrayListOf<Quote>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,6 +39,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         fabAddQuote.setOnClickListener { onAddQuoteClick() }
+        fabQoD.setOnClickListener { onQoDClick() }  // Implement intent
+//        fabTopRated.setOnClickListener { onTopRatedClick() }  // Implement intent
+
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = QuoteAdapter(quotes) { quote : Quote, voteDirection: String -> quoteClicked(quote, voteDirection)}
@@ -127,6 +128,11 @@ class MainActivity : AppCompatActivity() {
     private fun onAddQuoteClick() {
         val intent = Intent(this, AddQuoteActivity::class.java)
         startActivityForResult(intent, ADD_QUOTE_REQUEST_CODE)
+    }
+
+    private fun onQoDClick() {
+        val qoDIntent = Intent(this, QoDActivity::class.java)
+        startActivity(qoDIntent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

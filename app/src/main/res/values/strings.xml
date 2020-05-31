@@ -18,12 +18,16 @@
     <string name="tvViewQuoteDate">View quote date</string>
     <string name="tvViewQuoteScore">Quote score: %1$d</string>
 
+    <string name="tvQoDQuote">Loading quote…</string>
+    <string name="tvQoDQuotedEntity">Loading quote author…</string>
+
     <!--  Menus  -->
     <string name="menuDelete">Delete all quotes</string>
 
+    <string name="bottomMenuTopRated">Top</string>
+    <string name="bottomMenuQoD">QoD</string>
+
     <!--  Toasts  -->
     <string name="tstFillForms">Please fill out all forms.</string>
-
-
 
 </resources>
