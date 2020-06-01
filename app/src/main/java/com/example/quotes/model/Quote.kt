@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import java.util.Date
 
 @Parcelize
 @Entity(tableName = "quoteTable")
@@ -18,7 +19,7 @@ data class Quote(
     @ColumnInfo(name = "quotedEntity")
     val quotedEntity: String,
     @ColumnInfo(name = "date")
-    val dateText: String,
+    val date: Date,
     @ColumnInfo(name = "description")
     val description: String,
     @ColumnInfo(name = "score")

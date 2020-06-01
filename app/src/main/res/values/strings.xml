@@ -2,22 +2,26 @@
     <string name="app_name">Quotes</string>
 
     <!--  Views  -->
+    <!--  Add quote  -->
     <string name="tiletQuote">Quote text</string>
     <string name="tiletQuotedEntity">Quote by</string>
-    <string name="tiletQuoteDate">Quote date</string>
+    <string name="tiletQuoteDateDay">Quote day</string>
+    <string name="tiletQuoteDateMonth">Quote month</string>
+    <string name="tiletQuoteDateYear">Quote year</string>
     <string name="tiletQuoteDescription">Quote description</string>
-
+    <!--  Main recyclerview  -->
     <string name="tvQuoteTitle">Quote Title</string>
     <string name="tvQuotedEntity">Quoted entity</string>
     <string name="tvQuoteDate">Quote date</string>
     <string name="tvQuoteScore">132</string>
-
-    <string name="tvViewQuoteDescription">Quote description</string>
+    <!--  View Quote  -->
+    <string name="tvViewQuoteDescriptionTitle">Quote description:</string>
+    <string name="tvViewQuoteDescription">Quote description body</string>
     <string name="tvViewQuote">View quote text</string>
     <string name="tvViewQuotedEntity">View quoted entity</string>
     <string name="tvViewQuoteDate">View quote date</string>
     <string name="tvViewQuoteScore">Quote score: %1$d</string>
-
+    <!--  QoD  -->
     <string name="tvQoDQuote">Loading quote…</string>
     <string name="tvQoDQuotedEntity">Loading quote author…</string>
 
@@ -29,5 +33,7 @@
 
     <!--  Toasts  -->
     <string name="tstFillForms">Please fill out all forms.</string>
+
+    <string name="enterValidDate">Please enter a valid date.</string>
 
 </resources>

@@ -21,7 +21,10 @@
             android:id="@+id/tiletQuote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/tiletQuote" />
+            android:hint="@string/tiletQuote"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -40,26 +43,80 @@
             android:id="@+id/tiletQuotedEntity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/tiletQuotedEntity" />
+            android:hint="@string/tiletQuotedEntity"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilQuoteDate"
-        android:layout_width="match_parent"
+        android:id="@+id/tilQuoteDateDay"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tilQuoteDateMonth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilQuotedEntity">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tiletQuoteDate"
+            android:id="@+id/tiletQuoteDateDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/tiletQuoteDate" />
+            android:hint="@string/tiletQuoteDateDay"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilQuoteDateMonth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tilQuoteDateYear"
+        app:layout_constraintStart_toEndOf="@+id/tilQuoteDateDay"
+        app:layout_constraintTop_toBottomOf="@+id/tilQuotedEntity">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiletQuoteDateMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/tiletQuoteDateMonth"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilQuoteDateYear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tilQuoteDateMonth"
+        app:layout_constraintTop_toBottomOf="@+id/tilQuotedEntity">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiletQuoteDateYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/tiletQuoteDateYear"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="4"
+            android:maxLines="1"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -74,13 +131,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilQuoteDate">
+        app:layout_constraintTop_toBottomOf="@+id/tilQuoteDateMonth">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tiletQuoteDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/tiletQuoteDescription" />
+            android:hint="@string/tiletQuoteDescription"
+            android:maxLength="200"
+            android:maxLines="7" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -90,6 +149,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_save" />

@@ -6,6 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quotes.R
 import kotlinx.android.synthetic.main.item_quote.view.*
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 const val UPVOTE = "UPVOTE"
 const val DOWNVOTE = "DOWNVOTE"
@@ -17,13 +21,26 @@ class QuoteAdapter(private val quotes: ArrayList<Quote>, private val clickListen
         fun bind(quote: Quote, clickListener: (Quote, String) -> Unit) {
             itemView.tvQuote.text = quote.quote
             itemView.tvQuotedEntity.text = quote.quotedEntity
-            itemView.tvQuoteDate.text = quote.dateText  // Date van bouwen (net als in gamebacklog)
+            itemView.tvQuoteDate.text = formatDate(quote.date)
             itemView.tvQuoteScore.text = quote.score.toString()
 
             itemView.setOnClickListener { clickListener(quote, "") }
 
             itemView.btnUpvote.setOnClickListener { clickListener(quote, UPVOTE) }
             itemView.btnDownvote.setOnClickListener { clickListener(quote, DOWNVOTE) }
+        }
+
+        private fun formatDate(date: Date): String? {
+            val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.US)
+
+            formatter.format(date)
+            var fmtDate: String? = null
+            try {
+                fmtDate = formatter.format(date)
+            } catch (e: ParseException) {
+                return fmtDate
+            }
+            return fmtDate
         }
     }
 
