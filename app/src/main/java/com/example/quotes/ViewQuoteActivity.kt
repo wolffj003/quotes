@@ -33,9 +33,6 @@ class ViewQuoteActivity : AppCompatActivity() {
 
             val quote: LiveData<Quote> = viewQuoteViewModel.getQuote(quoteId)
             quote.observe(this, Observer { observedQuote ->
-
-
-
                 this@ViewQuoteActivity.tvViewQuote.text = observedQuote.quote
                 this@ViewQuoteActivity.tvViewQuotedEntity.text = observedQuote.quotedEntity
                 this@ViewQuoteActivity.tvViewQuoteDate.text = formatDate(observedQuote.date)

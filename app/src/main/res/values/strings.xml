@@ -11,9 +11,17 @@
     <string name="tiletQuoteDescription">Quote description</string>
     <!--  Main recyclerview  -->
     <string name="tvQuoteTitle">Quote Title</string>
-    <string name="tvQuotedEntity">Quoted entity</string>
+    <string name="tvQuotedEntity">-%1$s</string>
     <string name="tvQuoteDate">Quote date</string>
     <string name="tvQuoteScore">132</string>
+
+    <!--  Top Quotes  -->
+    <string name="tvTopQuoteTitle">Quote Title</string>
+    <string name="tvTopQuotedEntity">Quoted entity</string>
+    <string name="tvTopQuoteDate">Quote date</string>
+    <string name="tvTopQuoteScoreTitle">Quote score: </string>
+    <string name="tvTopQuoteScore">132</string>
+
     <!--  View Quote  -->
     <string name="tvViewQuoteDescriptionTitle">Quote description:</string>
     <string name="tvViewQuoteDescription">Quote description body</string>

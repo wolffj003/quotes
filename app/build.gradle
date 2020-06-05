@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services' // Firebase
 
 android {
     compileSdkVersion 29
@@ -62,7 +63,8 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.7.2")
     implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
-//    implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.7.2'  // Deze kan het erger maken of juist niet...
+    // Firebase
+    implementation 'com.google.firebase:firebase-database-ktx:19.3.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

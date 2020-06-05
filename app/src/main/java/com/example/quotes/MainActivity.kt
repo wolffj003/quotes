@@ -2,20 +2,26 @@ package com.example.quotes
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quotes.model.DOWNVOTE
-import com.example.quotes.model.Quote
-import com.example.quotes.model.QuoteAdapter
-import com.example.quotes.model.UPVOTE
+import com.example.quotes.model.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.text.Typography.quote
 
 const val ADD_QUOTE_REQUEST_CODE = 100
 const val EXTRA_VIEW_QUOTE = "EXTRA_VIEW_QUOTE"
@@ -26,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var mainActivityViewModel: MainActivityViewModel
+    private lateinit var firestoreDb: FirebaseDatabase
 
     private var quotes = arrayListOf<Quote>()
 
@@ -35,13 +42,35 @@ class MainActivity : AppCompatActivity() {
 
         initViews()
         initViewModel()
+        initFirebase()
+    }
+
+    private fun initFirebase() {
+        firestoreDb = Firebase.database
+        val dbReference = firestoreDb.getReference("quotes")
+
+        // Read from the database & update local db
+        dbReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (singleSnapshot in dataSnapshot.children) {
+                    val quote = singleSnapshot.getValue<QuoteTest>()
+                    if (quote != null) {  // Hierin moet de roomdb worden geupdated.
+                        val quoteText = quote.quote
+                        Log.d("taggerz", quoteText)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("Firestore", "Failed to read value.", error.toException())
+            }
+        })
     }
 
     private fun initViews() {
         fabAddQuote.setOnClickListener { onAddQuoteClick() }
-        fabQoD.setOnClickListener { onQoDClick() }  // Implement intent
-//        fabTopRated.setOnClickListener { onTopRatedClick() }  // Implement intent
-
+        fabQoD.setOnClickListener { onQoDClick() }
+        fabTopRated.setOnClickListener { onTopRatedClick() }
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = QuoteAdapter(quotes) { quote : Quote, voteDirection: String -> quoteClicked(quote, voteDirection)}
@@ -133,6 +162,11 @@ class MainActivity : AppCompatActivity() {
     private fun onQoDClick() {
         val qoDIntent = Intent(this, QoDActivity::class.java)
         startActivity(qoDIntent)
+    }
+
+    private fun onTopRatedClick() {
+        val topQuoteIntent = Intent(this, TopQuotesActivity::class.java)
+        startActivity(topQuoteIntent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

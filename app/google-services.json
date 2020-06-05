@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "378934648118",
+    "firebase_url": "https://mad-quotes.firebaseio.com",
+    "project_id": "mad-quotes",
+    "storage_bucket": "mad-quotes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378934648118:android:5790e7e3773c351081e797",
+        "android_client_info": {
+          "package_name": "com.example.quotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378934648118-gim3o4qpfi9debmc1tlu90f6lhh3ab81.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWyQ3ZwdMMDbay6avz4324IyHikrKCxdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378934648118-gim3o4qpfi9debmc1tlu90f6lhh3ab81.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
