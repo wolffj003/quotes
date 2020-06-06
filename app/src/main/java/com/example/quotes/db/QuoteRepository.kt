@@ -21,6 +21,10 @@ class QuoteRepository(context: Context) {
         return  quoteDao.getQuote(id)
     }
 
+    fun getQuoteByUuid(uuid: String): Quote {
+        return  quoteDao.getQuoteByUuid(uuid)
+    }
+
     fun deleteQuotes() {
         return quoteDao.deleteQuotes()
     }

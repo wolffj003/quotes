@@ -47,7 +47,9 @@ class AddQuoteActivity : AppCompatActivity() {
             val date = strToDate("$tiletQuoteDateDayText-$tiletQuoteDateMonthText-$tiletQuoteDateYearText")
 
             date?.let {
+                val uuid = UUID.randomUUID().toString()
                 val quote = Quote(
+                    uuid = uuid,
                     quote = tiletQuoteText,
                     quotedEntity = tiletQuotedEntityText,
                     date = date,

@@ -21,7 +21,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.text.Typography.quote
 
 const val ADD_QUOTE_REQUEST_CODE = 100
 const val EXTRA_VIEW_QUOTE = "EXTRA_VIEW_QUOTE"
@@ -53,10 +52,9 @@ class MainActivity : AppCompatActivity() {
         dbReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (singleSnapshot in dataSnapshot.children) {
-                    val quote = singleSnapshot.getValue<QuoteTest>()
-                    if (quote != null) {  // Hierin moet de roomdb worden geupdated.
-                        val quoteText = quote.quote
-                        Log.d("taggerz", quoteText)
+                    val fsQuote = singleSnapshot.getValue<Quote>()  // Fs object
+                    if (fsQuote != null) {
+                        mainActivityViewModel.syncRoomDb(fsQuote)
                     }
                 }
             }

@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
 import kotlinx.android.parcel.Parcelize
 import java.util.Date
@@ -11,20 +12,25 @@ import java.util.Date
 @Parcelize
 @Entity(tableName = "quoteTable")
 data class Quote(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "id")
     var id: Long? = null,
+    @ColumnInfo(name = "uuid")
+    var uuid: String = "",
 
     @ColumnInfo(name = "quote")
-    var quote: String,
+    var quote: String = "",
     @ColumnInfo(name = "quotedEntity")
-    val quotedEntity: String,
+    val quotedEntity: String = "",
+    @get:Exclude // Exclude field from firestore
     @ColumnInfo(name = "date")
-    val date: Date,
+    var date: Date = Date(),
     @ColumnInfo(name = "description")
-    val description: String,
+    val description: String = "",
     @ColumnInfo(name = "score")
-    var score: Int
+    var score: Int = 0,
+
+    var dateLong: Long = 0
 ) : Parcelable
 
 @IgnoreExtraProperties
