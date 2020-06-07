@@ -6,13 +6,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.EditText
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quotes.model.*
+import com.example.quotes.model.DOWNVOTE
+import com.example.quotes.model.Quote
+import com.example.quotes.model.QuoteAdapter
+import com.example.quotes.model.UPVOTE
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,6 +27,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 const val ADD_QUOTE_REQUEST_CODE = 100
 const val EXTRA_VIEW_QUOTE = "EXTRA_VIEW_QUOTE"
@@ -79,6 +86,21 @@ class MainActivity : AppCompatActivity() {
             adapter = viewAdapter
         }
 
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 && fabQoD.visibility == View.VISIBLE) {
+                    fabQoD.hide()
+                    fabTopRated.hide()
+                    fabAddQuote.hide()
+                } else if (dy < 0 && fabQoD.visibility != View.VISIBLE) {
+                    fabQoD.show()
+                    fabTopRated.show()
+                    fabAddQuote.show()
+                }
+            }
+        })
+
         createItemTouchHelper().attachToRecyclerView(rvQuotes)
     }
 
@@ -120,10 +142,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        deleteQuotes()
-
         return when (item.itemId) {
-            R.id.menuDelete -> true
+            R.id.menuDelete -> {
+                deleteQuotes()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

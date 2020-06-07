@@ -62,7 +62,7 @@
             android:layout_marginBottom="24dp"
             android:background="#FFFFFF"
             android:scaleType="fitCenter"
-            android:tint="#000000"
+            android:tint="#424242"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:srcCompat="@drawable/arrow" />
@@ -76,7 +76,7 @@
             android:background="#FFFFFF"
             android:rotation="180"
             android:scaleType="fitCenter"
-            android:tint="#000000"
+            android:tint="#424242"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:srcCompat="@drawable/arrow" />

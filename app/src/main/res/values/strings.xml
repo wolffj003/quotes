@@ -36,9 +36,6 @@
     <!--  Menus  -->
     <string name="menuDelete">Delete all quotes</string>
 
-    <string name="bottomMenuTopRated">Top</string>
-    <string name="bottomMenuQoD">QoD</string>
-
     <!--  Toasts  -->
     <string name="tstFillForms">Please fill out all forms.</string>
 
