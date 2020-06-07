@@ -10,6 +10,7 @@ The idea for this app was forged by a group of friends wanting to store highly l
 	* Individual quoted
 	* Date
 * Persistent storage of quotes.
+* Search quotes.
 * CRUD operations.
 * Online synchronization. (RESTful)
 * User accounts
